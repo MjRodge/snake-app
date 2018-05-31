@@ -1,0 +1,12 @@
+snake-canvas {
+	border: 1px solid #000000;
+	margin: 15px;
+  clear: both;
+}
+
+div#snake-main{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding-top: 115px;
+}

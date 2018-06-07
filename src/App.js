@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
-import Snake from './snake';
-import './App.css';
+import React from 'react';
+import Login from './login';
+//import './css/reset.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
-      <div>
-        <Snake />
-      </div>
+      <React.Fragment>
+        <CssBaseline />
+          <div>
+            <h1>Highscores</h1>
+            <Login/>
+          </div>
+      </React.Fragment>
     );
   }
 }

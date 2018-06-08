@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import './css/login.css';
 
 class Login extends React.Component {
@@ -20,6 +21,12 @@ class Login extends React.Component {
         username: [],
         password: [],
         showPassword: false,
+        passwordError: true,
+        usernameError: false,
+        errors: {
+          name: ["shadfiuh"],
+          password: ["erorrrrr"]
+        }
       };
   }
   handleUsernameChange = username => event => {
@@ -50,17 +57,30 @@ class Login extends React.Component {
             color="textSecondary"
             component="h2"
           >
-              Login
+            Login
           </Typography>
           <TextField
             required
+            autoComplete="off"
+            error={this.state.usernameError ?
+              true
+              :
+              false}
+            helperText={this.state.usernameError ?
+              this.state.errors.name
+              :
+              null}
             id="username"
             label="Username"
             className="login-textfield"
             onChange={this.handleUsernameChange('username')}
             margin="normal"
           />
-          <FormControl className="login-textfield" required>
+          <FormControl className="login-textfield"
+            required error={this.state.passwordError ?
+              true
+              :
+              false}>
             <InputLabel htmlFor="password">Password</InputLabel>
             <Input
               id="password"
@@ -79,12 +99,18 @@ class Login extends React.Component {
                 </InputAdornment>
               }
             />
+            {this.state.passwordError ?
+              <FormHelperText>
+                {this.state.errors.password}
+              </FormHelperText>
+              :
+              null }
           </FormControl>
           <Button
             variant="contained"
             color="primary"
             className="login-button"
-            onClick={this.handleClickLoginButton}
+            onClick={this.handleClickSignupButton}
             >
               Login
           </Button>

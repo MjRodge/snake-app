@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,20 +15,18 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import './css/login.css';
 
-class Login extends React.Component {
+class Signup extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
         username: [],
         password: [],
         showPassword: false,
-        passwordError: true,
-        usernameError: false,
-        errors: {
-          username: ["shadfiuh"],
-          password: ["erorrrrr"]
-        }
+        passwordError: false,
+        usernameError: true,
+        errors: {}
       };
+      this.apiLink = "http://127.0.0.1:8080/auth/signup";
   }
   handleUsernameChange = username => event => {
     this.setState({ [username]: event.target.value });
@@ -35,13 +34,41 @@ class Login extends React.Component {
   handlePasswordChange = password => event => {
     this.setState({ [password]: event.target.value });
   };
+
+  //functions to toggle password visibility
   handleMouseDownPassword = event => {
     event.preventDefault();
   };
   handleClickShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
   };
-  handleClickLoginButton = () => {
+
+  handleClickSignupButton = (event) => {
+    event.preventDefault();
+    alert("username: "+this.state.username+" password: "+this.state.password);
+    /*axios.post(this.apiLink, {username: this.state.username, password: this.state.password})
+      .then(function(response){
+        console.log('saved successfully');
+      })
+      .catch(function(error){
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          var errors = error.response.data.errors;
+          this.setState({errors: errors});
+          console.log(this.state.errors.username);
+          //console.log(error.response.data);
+          //console.log(error.response.status);
+          //console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+        }
+        console.log(error.config);
+      });*/
     console.log("username: "+this.state.username);
     console.log("password: "+this.state.password);
   }
@@ -57,7 +84,7 @@ class Login extends React.Component {
             color="textSecondary"
             component="h2"
           >
-            Login
+              Sign Up
           </Typography>
           <TextField
             required
@@ -110,9 +137,9 @@ class Login extends React.Component {
             variant="contained"
             color="primary"
             className="login-button"
-            onClick={this.handleClickLoginButton}
+            onClick={this.handleClickSignupButton}
             >
-              Login
+              Sign Up
           </Button>
         </CardContent>
         </Card>
@@ -121,4 +148,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Signup;

@@ -24,7 +24,7 @@ class Login extends React.Component {
         passwordError: true,
         usernameError: false,
         errors: {
-          name: ["shadfiuh"],
+          username: ["shadfiuh"],
           password: ["erorrrrr"]
         }
       };
@@ -67,7 +67,7 @@ class Login extends React.Component {
               :
               false}
             helperText={this.state.usernameError ?
-              this.state.errors.name
+              this.state.errors.username
               :
               null}
             id="username"
@@ -110,7 +110,7 @@ class Login extends React.Component {
             variant="contained"
             color="primary"
             className="login-button"
-            onClick={this.handleClickSignupButton}
+            onClick={this.handleClickLoginButton}
             >
               Login
           </Button>

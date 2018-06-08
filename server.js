@@ -24,6 +24,15 @@ mongoose.connect(host, function(error){
 }); // connect to the database
 
 // routes ======================================================================
+// middleware to use for all requests
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // Added to resolve CORS issue
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  console.log('Something is happening.');
+  next(); // make sure we go to the next routes and don't stop here
+});
+
 var authRoutes = require('./app/routes/auth');
 app.use('/auth', authRoutes);
 
